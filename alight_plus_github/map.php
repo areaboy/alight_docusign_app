@@ -1,0 +1,75 @@
+<?php 
+ // ensure that there is no whitespace and included file quickbase_token.php does not have whitespace
+header("Content-type: text/xml");
+include('db_connect_map.php');
+// Start XML file, create parent node
+$dom = new DOMDocument("1.0");
+$node = $dom->createElement("markers");
+$parnode = $dom->appendChild($node);
+$identity = strip_tags($_GET['identity']);
+$result = $db->prepare("SELECT * FROM refugees  where id=:id");
+$result->execute(array(':id' =>$identity));
+//header("Content-type: text/xml");
+while ($v1 = $result->fetch()) {
+                $id = $v1['id'];
+                $postid = $v1['id'];
+                $reg_no = $v1['reg_no'];
+ $case_no = $v1['case_no'];
+ $email = $v1['email'];
+$lastname = $v1['lastname'];
+ $firstname = $v1['firstname'];
+$middlename = $v1['middlename'];
+$fullname = "$lastname $firstname $middlename";
+$name = $fullname;
+ $dob = $v1['dob'];
+$pob = $v1['pob'];
+$address = $v1['address'];
+$gender = $v1['gender'];
+ $citizenship = $v1['citizenship'];
+$ethinicity = $v1['ethinicity'];
+ $religion = $v1['religion'];
+$country = $v1['country'];
+ $timing = $v1['timing'];
+$lat = $v1['lat'];
+$lng = $v1['lng'];
+$language = $v1['language'];
+ $other_language = $v1['other_language'];
+$name_doc = $v1['name_doc'];
+ $doc_no = $v1['doc_no'];
+$doc_type = $v1['doc_type'];
+ $place_issuance = $v1['place_issuance'];
+$issuing_authority = $v1['issuing_authority'];
+ $photo = $v1['photo'];
+$data ='public';
+$type = 1;
+$node = $dom->createElement("marker");
+  $newnode = $parnode->appendChild($node);
+  $newnode->setAttribute("id",$id);
+$newnode->setAttribute("reg_no",$reg_no);
+$newnode->setAttribute("case_no",$case_no);
+$newnode->setAttribute("name",$fullname);
+$newnode->setAttribute("dob",$dob);
+$newnode->setAttribute("pob",$pob);
+$newnode->setAttribute("address", $address);
+$newnode->setAttribute("gender",$gender);
+$newnode->setAttribute("citizenship",$citizenship);
+$newnode->setAttribute("ethinicity",$ethinicity);
+$newnode->setAttribute("religion",$religion);
+$newnode->setAttribute("country", $country);
+$newnode->setAttribute("timing", $timing);
+$newnode->setAttribute("lat", $lat);
+$newnode->setAttribute("lng", $lng);
+$newnode->setAttribute("language",$language);
+$newnode->setAttribute("other_language",$other_language);
+$newnode->setAttribute("name_doc",$name_doc);
+$newnode->setAttribute("doc_no",$doc_no);
+$newnode->setAttribute("doc_type",$doc_type);
+$newnode->setAttribute("place_issuance",$place_issuance);
+$newnode->setAttribute("issuing_authority",$issuing_authority);
+$newnode->setAttribute("photo",$photo);
+$newnode->setAttribute("type", $type);
+  $newnode->setAttribute("data_type", $data);
+$newnode->setAttribute("fullname", $fullname);
+}
+echo $dom->saveXML();
+?>
