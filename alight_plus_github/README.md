@@ -7,7 +7,7 @@ Powered by Docusign Signature API, Google Map, Google Chart Statictics, Email Se
 
 # How to Install the Application
 
-1.)Once you download this application. First you will need to Unzip **mail_vendor.zip** folder and **twilio_sms.zip** folder inside the application main folder.
+1.)Once you download this application. First you will need to <h3>Unzip</h3> **mail_vendor.zip** folder and **twilio_sms.zip** folder inside the application main folder.
 
 We zipped those 2 folders becuase Github only allow uploades of maximum of 100 files through web interface. Because those two folders contains numerous files so we have to zip it before uploading it to Github
 
